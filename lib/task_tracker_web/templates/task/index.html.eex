@@ -1,4 +1,4 @@
-<h1>Listing Tasks</h1>
+<h1>Assign Tasks</h1>
 
 <table>
   <thead>
@@ -6,7 +6,6 @@
       <th>Title</th>
       <th>Desc</th>
       <th>Done</th>
-      <th>Time spent</th>
 
       <th></th>
     </tr>
@@ -17,16 +16,10 @@
       <td><%= task.title %></td>
       <td><%= task.desc %></td>
       <td><%= task.done %></td>
-      <td><%= task.time_spent %></td>
-
-      <td>
-        <%= link "Show", to: Routes.task_path(@conn, :show, task) %>
-        <%= link "Edit", to: Routes.task_path(@conn, :edit, task) %>
-        <%= link "Delete", to: Routes.task_path(@conn, :delete, task), method: :delete, data: [confirm: "Are you sure?"] %>
-      </td>
+      <t><%= task.assigned %></td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Task", to: Routes.task_path(@conn, :new) %></span>
+<span><%= link "Back", to: Routes.page_path(@conn, :index) %></span>
