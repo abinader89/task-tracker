@@ -1,34 +1,19 @@
 <section class="phx-hero">
-  <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
-  <p>A productive web framework that<br/>does not compromise speed and maintainability.</p>
+  <h1><%= gettext "Welcome to %{name}!", name: "Task Tracker" %></h1>
+  <p>A Task Tracker that tracks all your tasks for all your tracking needs!</p>
 </section>
-
 <section class="row">
   <article class="column">
-    <h2>Resources</h2>
+    <h2>Additional Actions</h2>
     <ul>
       <li>
-        <a href="https://hexdocs.pm/phoenix/overview.html">Guides &amp; Docs</a>
+        <a href="https://hexdocs.pm/phoenix/overview.html">Registration</a>
       </li>
       <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
+        <a href="https://github.com/phoenixframework/phoenix">Create Task</a>
       </li>
       <li>
-        <a href="https://github.com/phoenixframework/phoenix/blob/v1.4/CHANGELOG.md">v1.4 Changelog</a>
-      </li>
-    </ul>
-  </article>
-  <article class="column">
-    <h2>Help</h2>
-    <ul>
-      <li>
-        <a href="https://elixirforum.com/c/phoenix-forum">Forum</a>
-      </li>
-      <li>
-        <a href="https://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on Freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">Twitter @elixirphoenix</a>
+        <a href="https://github.com/phoenixframework/phoenix/blob/v1.4/CHANGELOG.md">Assign Task</a>
       </li>
     </ul>
   </article>
