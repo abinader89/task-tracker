@@ -7,13 +7,13 @@
     <h2>Additional Actions</h2>
     <ul>
       <li>
-        <a href="https://hexdocs.pm/phoenix/overview.html">Registration</a>
+        <a href="users/new">Registration</a>
       </li>
       <li>
-        <a href="https://github.com/phoenixframework/phoenix">Create Task</a>
+        <a href="tasks/new">Create Task</a>
       </li>
       <li>
-        <a href="https://github.com/phoenixframework/phoenix/blob/v1.4/CHANGELOG.md">Assign Task</a>
+        <a href="tasks/new">Assign Task</a>
       </li>
     </ul>
   </article>

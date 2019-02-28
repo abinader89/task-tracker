@@ -8,15 +8,17 @@
         <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     </head>
     <body>
-        <header>
-            <section class="container">
-                <nav role="navigation">
-                    <div class="col-4">
+            <div class="jumbotron">
+                <%= if get_flash(@conn, :info) do %>
+                <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+                <% end %>
+                <%= if get_flash(@conn, :error) do %>
+                <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+                <% end %>
                         <%= if @current_user do %>
-                        <p class="my-3">
-                         User: <%= @current_user.email %>
-                        <%= link("Logout", to: Routes.session_path(@conn, :delete),
-                           method: :delete) %>
+                        <p>
+                         User: <%= @current_user.name %>
+                        <%= link("Logout", to: Routes.session_path(@conn, :delete), method: :delete) %>
                         </p>
                         <% else %>
                         <%= form_for @conn, Routes.session_path(@conn, :create),
@@ -25,16 +27,11 @@
                            <%= submit "Login", class: "btn btn-secondary" %>
                            <% end %>
                            <% end %>
-                    </div>
-                </nav>
                 <a href="/">
-                    <h1>Task Tracker</h1>
+                <h1>Task Tracker</h1>
                 </a>
-            </section>
-        </header>
+            </div>
         <main role="main" class="container">
-        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
         <%= render @view_module, @view_template, assigns %>
         </main>
         <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
