@@ -36,6 +36,10 @@ defmodule TaskTracker.Tasks do
 
   """
   def get_task!(id), do: Repo.get!(Task, id)
+  def get_task(id), do: Repo.get(Task, id)
+  def get_tasks_by_user(id) do
+    Repo.get_by(Task, user_id: id)
+  end
 
   @doc """
   Creates a task.

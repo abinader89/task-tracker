@@ -13,9 +13,9 @@
   <%= text_input f, :desc %>
   <%= error_tag f, :desc %>
 
-  <% label f, :id %>
-  <%= number_input f, :id %>
-  <%= error_tag f, :id %>
+  <%= label f, :user_id %>
+  <%= number_input f, :user_id %>
+  <%= error_tag f, :user_id %>
 
   <div>
     <%= submit "Save" %>

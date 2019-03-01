@@ -4,11 +4,11 @@ defmodule TaskTracker.Tasks.Task do
 
 
   schema "tasks" do
-    field :title, :string
     field :desc, :string
-    belongs_to :user, TaskTracker.Users.User
     field :done, :boolean, default: false
-    field :time_spent, :integer, default: 0
+    field :time_spent, :integer
+    field :title, :string
+    belongs_to :user, TaskTracker.Users.User
 
     timestamps()
   end

@@ -1,5 +1,6 @@
-<h1>Show Task</h1>
-
+<%= if @current_user do %>
+<h1><%= @current_user.name %>'s Task(s)</h1>
+<% end %>
 <ul>
 
   <li>
@@ -15,11 +16,6 @@
   <li>
     <strong>Done:</strong>
     <%= @task.done %>
-  </li>
-
-  <li>
-    <strong>Time spent:</strong>
-    <%= @task.time_spent %>
   </li>
 
 </ul>

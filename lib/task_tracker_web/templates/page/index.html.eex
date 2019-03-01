@@ -12,6 +12,11 @@
       <li>
         <a href="tasks/new">Create Task</a>
       </li>
+      <%= if @current_user do %>
+      <li>
+      <a href="tasks/">Mark Tasks Completed</a>
+      </li>
+      <% end %>
     </ul>
   </article>
 </section>

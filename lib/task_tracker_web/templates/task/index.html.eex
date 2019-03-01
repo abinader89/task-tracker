@@ -1,13 +1,14 @@
-<h1>Assign Tasks</h1>
-
+<%= if @current_user do %>
+<h1><%= @current_user.name %>'s Tasks</h1>
+<% end %>
 <table>
   <thead>
     <tr>
       <th>Title</th>
       <th>Desc</th>
       <th>Done</th>
-      <th>Time Spent</th>
-      <th>Assigned To</th>
+      <th>Time spent</th>
+
       <th></th>
     </tr>
   </thead>
@@ -17,11 +18,10 @@
       <td><%= task.title %></td>
       <td><%= task.desc %></td>
       <td><%= task.done %></td>
-      <td><%= task.time_spent %></td>
-      <td><%= task.user_id %></td>
+      <td>
+      </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "Back", to: Routes.page_path(@conn, :index) %></span>
