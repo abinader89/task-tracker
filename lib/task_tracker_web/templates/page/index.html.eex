@@ -9,10 +9,10 @@
       <li>
         <a href="users/new">Registration</a>
       </li>
+      <%= if @current_user do %>
       <li>
         <a href="tasks/new">Create Task</a>
       </li>
-      <%= if @current_user do %>
       <li>
       <a href="tasks/">View Assigned Tasks</a>
       </li>

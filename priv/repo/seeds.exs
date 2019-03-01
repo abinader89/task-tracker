@@ -12,11 +12,11 @@
 alias TaskTracker.Repo
 alias TaskTracker.Users.User
 
-Repo.insert!(%User{name: "alice", email: "alice@example.com"})
-Repo.insert!(%User{name: "Bob", email: "bob@example.com"})
+#Repo.insert!(%User{name: "alice", email: "alice@example.com"})
+#Repo.insert!(%User{name: "Bob", email: "bob@example.com"})
 
 alias TaskTracker.Repo
 alias TaskTracker.Tasks.Task
 
-Repo.insert!(%Task{title: "Do homework", desc: "homework sucks", done: true, time_spent: 30, user_id: 1})
-Repo.insert!(%Task{title: "Go Shower", desc: "fun", done: false, time_spent: 15, user_id: 2})
+#Repo.insert!(%Task{title: "Do homework", desc: "homework sucks", done: true, time_spent: 30, user_id: 1})
+#Repo.insert!(%Task{title: "Go Shower", desc: "fun", done: false, time_spent: 15, user_id: 2})
