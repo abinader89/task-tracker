@@ -1,20 +1,8 @@
 # TaskTracker
 
-To start your Phoenix server:
+## Design Decisions
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
-
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+So I designed the webapp so that you can register, login/out as in husky_shop.
+Also, When you are logged in, on the index, a show tasks is shown which redirects
+you to the tasks index. From there, you can make a new task given the title,
+description, and the integer associated with the user you are assigning it to.
