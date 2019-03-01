@@ -13,6 +13,10 @@
   <%= text_input f, :desc %>
   <%= error_tag f, :desc %>
 
+  <% label f, :id %>
+  <%= number_input f, :id %>
+  <%= error_tag f, :id %>
+
   <div>
     <%= submit "Save" %>
   </div>

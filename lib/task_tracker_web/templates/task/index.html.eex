@@ -6,7 +6,8 @@
       <th>Title</th>
       <th>Desc</th>
       <th>Done</th>
-
+      <th>Time Spent</th>
+      <th>Assigned To</th>
       <th></th>
     </tr>
   </thead>
@@ -16,7 +17,8 @@
       <td><%= task.title %></td>
       <td><%= task.desc %></td>
       <td><%= task.done %></td>
-      <t><%= task.assigned %></td>
+      <td><%= task.time_spent %></td>
+      <td><%= task.user_id %></td>
     </tr>
 <% end %>
   </tbody>

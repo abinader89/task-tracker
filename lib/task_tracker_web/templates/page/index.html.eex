@@ -12,9 +12,6 @@
       <li>
         <a href="tasks/new">Create Task</a>
       </li>
-      <li>
-        <a href="tasks">Assign Task</a>
-      </li>
     </ul>
   </article>
 </section>
