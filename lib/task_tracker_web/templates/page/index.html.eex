@@ -14,7 +14,7 @@
       </li>
       <%= if @current_user do %>
       <li>
-      <a href="tasks/">Mark Tasks Completed</a>
+      <a href="tasks/">View Assigned Tasks</a>
       </li>
       <% end %>
     </ul>

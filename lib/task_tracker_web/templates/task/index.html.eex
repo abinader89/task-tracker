@@ -1,5 +1,5 @@
 <%= if @current_user do %>
-<h1><%= @current_user.name %>'s Tasks</h1>
+<h1><%= @current_user.name %>'s Viewing All Task(s)</h1>
 <% end %>
 <table>
   <thead>
@@ -8,7 +8,7 @@
       <th>Desc</th>
       <th>Done</th>
       <th>Time spent</th>
-
+      <th>User Assigned</th>
       <th></th>
     </tr>
   </thead>
@@ -18,7 +18,8 @@
       <td><%= task.title %></td>
       <td><%= task.desc %></td>
       <td><%= task.done %></td>
-      <td>
+      <td><%= task.time_spent %></td>
+      <td><%= TaskTracker.Users.get_user(task.user_id).email %></td>
       </td>
     </tr>
 <% end %>

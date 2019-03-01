@@ -18,6 +18,15 @@
     <%= @task.done %>
   </li>
 
+  <li>
+    <strong>Time Spent:</strong>
+    <%= @task.time_spent %>
+  </li>
+
+  <li>
+    <strong>User:</strong>
+    <%= TaskTracker.Users.get_user(@task.user_id).email %>
+  </li>
 </ul>
 
 <span><%= link "Back", to: Routes.page_path(@conn, :index) %></span>
