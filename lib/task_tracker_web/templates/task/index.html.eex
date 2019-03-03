@@ -1,28 +1,70 @@
-<%= if @current_user do %>
-<h1><%= @current_user.name %>'s Viewing All Task(s)</h1>
-<% end %>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Desc</th>
-      <th>Done</th>
-      <th>Time spent</th>
-      <th>User Assigned</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for task <- @tasks do %>
-    <tr>
-      <td><%= task.title %></td>
-      <td><%= task.desc %></td>
-      <td><%= task.done %></td>
-      <td><%= task.time_spent %></td>
-      <td><%= TaskTracker.Users.get_user(task.user_id).email %></td>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
+<h1>Currently Unassigned Tasks</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Desc</th>
+        <th>Assign?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for task <- @tasks do %>
+      <%= if task.user_id == nil do %>
+        <tr>
+          <td><%= task.title %></td>
+          <td><%= task.desc %></td>
+          <td>
+            <%= link "Assign", to: Routes.task_path(@conn, :edit, task) %>
+          </td>
+        </tr>
+      <% end %>
+      <% end %>
+      </tbody>
+  </table>
 
+<h1>Currently Unfinished Tasks</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Desc</th>
+        <th>Complete?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for task <- @tasks do %>
+      <%= if task.user_id == @current_user.id and not task.done do %>
+        <tr>
+          <td><%= task.title %></td>
+          <td><%= task.desc %></td>
+          <td>
+          <%= link "Finish", to: Routes.task_path(@conn, :patch, task) %>
+          </td>
+      </tr>
+      <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+<h1>Completed Tasks</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Desc</th>
+        <th>Time Spent</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for task <- @tasks do %>
+      <%= if task.user_id == @current_user.id and task.done do %>
+        <tr>
+          <td><%= task.title %></td>
+          <td><%= task.desc %></td>
+          <td><%= task.time_spent %></td>
+          </td>
+        </tr>
+      <% end %>
+      <% end %>
+    </tbody>
+    </table>

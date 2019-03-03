@@ -1,5 +1,15 @@
-<h1>Edit Task</h1>
+  <%= if @task.user_id == nil do %>
+    <h1>Assign Task</h1>
 
-<%= render "form.html", Map.put(assigns, :action, Routes.task_path(@conn, :update, @task)) %>
+    <%= render "assign.html", Map.put(assigns, :action, Routes.task_path(@conn, :update, @task)) %>
 
-<span><%= link "Back", to: Routes.task_path(@conn, :index) %></span>
+
+  <% else %>
+    <h1>Finish Task</h1>
+
+    <%= render "finish.html", Map.put(assigns, :action, Routes.task_path(@conn, :patch, @task)) %>
+  
+  <% end %>
+
+  <span><%= link "Back", to: Routes.page_path(@conn, :index) %></span>
+

@@ -40,11 +40,25 @@ defmodule TaskTrackerWeb.TaskController do
   def update(conn, %{"id" => id, "task" => task_params}) do
     task = Tasks.get_task!(id)
 
-    case Tasks.update_task(task, task_params) do
+    case Tasks.assign_task(task, task_params) do
       {:ok, task} ->
         conn
-        |> put_flash(:info, "Task updated successfully.")
-        |> redirect(to: Routes.task_path(conn, :show, task))
+        |> put_flash(:info, "Task assigned successfully.")
+        |> redirect(to: Routes.page_path(conn, :index))
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, "edit.html", task: task, changeset: changeset)
+    end
+  end
+
+  def patch(conn, %{"id" => id, "task" => task_params}) do
+    task = Tasks.get_task!(id)
+
+    case Tasks.finish_task(task, task_params) do
+      {:ok, task} ->
+        conn
+        |> put_flash(:info, "Task Marked Finished successfully.")
+        |> redirect(to: Routes.page_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", task: task, changeset: changeset)

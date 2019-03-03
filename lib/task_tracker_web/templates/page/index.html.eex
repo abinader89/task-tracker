@@ -14,7 +14,7 @@
         <a href="tasks/new">Create Task</a>
       </li>
       <li>
-      <a href="tasks/">View Assigned Tasks</a>
+      <a href="tasks">Edit Task</a>
       </li>
       <% end %>
     </ul>

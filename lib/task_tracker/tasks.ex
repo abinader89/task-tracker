@@ -71,9 +71,15 @@ defmodule TaskTracker.Tasks do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_task(%Task{} = task, attrs) do
+  def assign_task(%Task{} = task, attrs) do
     task
-    |> Task.changeset(attrs)
+    |> Task.changeset(attrs, :assign)
+    |> Repo.update()
+  end
+
+  def finish_task(%Task{} = task, attrs) do
+    task
+    |> Task.changeset(attrs, :done)
     |> Repo.update()
   end
 
