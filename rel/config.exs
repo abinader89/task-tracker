@@ -53,3 +53,9 @@ release :task_tracker do
   ]
 end
 
+release :task_tracker2 do
+  set version: current_version(:task_tracker)
+  set applications: [
+    :runtime_tools
+  ]
+end
