@@ -16,7 +16,7 @@ mix deps.get --only prod
 mix phx.digest
 
 echo "Generating release..."
-mix release
+mix release --name="task_tracker2"
 
 echo "Starting app..."
 
