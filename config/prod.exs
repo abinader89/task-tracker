@@ -13,7 +13,7 @@ config :task_tracker, TaskTrackerWeb.Endpoint,
   server: true,
   root: ".",
   http: [port: System.get_env("PORT")],
-  url: [host: "tasks1.cs4550abinader.com", port: 80],
+  url: [host: "tasks2.cs4550abinader.com", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
@@ -94,6 +94,6 @@ config :phoenix, :plug_init_mode, :runtime
 config :task_tracker, TaskTracker.Repo,
   username: "task_tracker",
   password: "vahz9Cei4uaV",
-  database: "task_tracker_prod",
+  database: "task_tracker2_prod",
   hostname: "localhost",
   pool_size: 10
