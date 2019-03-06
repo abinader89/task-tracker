@@ -13,6 +13,9 @@
   <%= text_input f, :email %>
   <%= error_tag f, :email %>
 
+  <%= label f, :admin,  "Role" %>
+  <%= select f, :admin, ["Admin": true, "User": false] %>
+
   <div>
     <%= submit "Save" %>
   </div>

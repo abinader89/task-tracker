@@ -12,6 +12,21 @@
     <%= @user.email %>
   </li>
 
+  <li>
+    <strong>Admin?</strong>
+    <%= @user.admin %>
+  </li>
+
+<%= if @user.supervisor_id do %>
+  <li>
+    <strong>Manager:</strong>
+    <%= TaskTracker.Users.get_user(@user.supervisor_id).email %>
+  </li>
+  <% else %>
+  <li>
+  <p>(Currently No Manager)</p>
+  </li>
+  <% end %>
 </ul>
 
 <span><%= link "Back", to: Routes.page_path(@conn, :index) %></span>

@@ -7,7 +7,8 @@ defmodule TaskTracker.Users.User do
     field :email, :string, unique: true
     field :name, :string, null: false
     field :admin, :boolean
-    belongs_to :user, TaskTracker.Users.User
+    field :supervisor_id, :integer
+    has_one :user, TaskTracker.Users.User, foreign_key: :id, references: :supervisor_id
 
     timestamps()
   end
@@ -20,4 +21,11 @@ defmodule TaskTracker.Users.User do
     |> validate_format(:email, ~r/@/)
     |> unique_constraint(:email)
   end
+
+  @doc false
+  def changeset(user, attrs, sym) when sym == :set do
+    user
+    |> cast(attrs, [:supervisor_id])
+    |> validate_required([:supervisor_id])
+    end
 end

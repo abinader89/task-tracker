@@ -1,70 +1,21 @@
-<h1>Currently Unassigned Tasks</h1>
+<h1>My Task(s)</h1>
   <table>
     <thead>
       <tr>
         <th>Title</th>
         <th>Desc</th>
-        <th>Assign?</th>
+        <th>Finished?</th>
       </tr>
     </thead>
     <tbody>
       <%= for task <- @tasks do %>
-      <%= if task.user_id == nil do %>
+      <%= if task.user_id == @current_user.id do %>
         <tr>
           <td><%= task.title %></td>
           <td><%= task.desc %></td>
-          <td>
-            <%= link "Assign", to: Routes.task_path(@conn, :edit, task) %>
-          </td>
+          <td><%= task.done %></td>
         </tr>
       <% end %>
       <% end %>
       </tbody>
   </table>
-
-<h1>Currently Unfinished Tasks</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Desc</th>
-        <th>Complete?</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= for task <- @tasks do %>
-      <%= if task.user_id == @current_user.id and not task.done do %>
-        <tr>
-          <td><%= task.title %></td>
-          <td><%= task.desc %></td>
-          <td>
-          <%= link "Finish", to: Routes.task_path(@conn, :patch, task) %>
-          </td>
-      </tr>
-      <% end %>
-      <% end %>
-    </tbody>
-  </table>
-
-<h1>Completed Tasks</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Desc</th>
-        <th>Time Spent</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= for task <- @tasks do %>
-      <%= if task.user_id == @current_user.id and task.done do %>
-        <tr>
-          <td><%= task.title %></td>
-          <td><%= task.desc %></td>
-          <td><%= task.time_spent %></td>
-          </td>
-        </tr>
-      <% end %>
-      <% end %>
-    </tbody>
-    </table>

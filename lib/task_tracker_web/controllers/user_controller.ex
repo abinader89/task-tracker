@@ -39,11 +39,23 @@ defmodule TaskTrackerWeb.UserController do
 
   def update(conn, %{"id" => id, "user" => user_params}) do
     user = Users.get_user!(id)
-
     case Users.update_user(user, user_params) do
       {:ok, user} ->
         conn
         |> put_flash(:info, "User updated successfully.")
+        |> redirect(to: Routes.user_path(conn, :show, user))
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, "edit.html", user: user, changeset: changeset)
+    end
+  end
+
+  def patch(conn, %{"id" => id}) do
+    user = Users.get_user(id)
+    case Users.assign_manager(user, %{"supervisor_id" => conn.assigns.current_user.id}) do
+      {:ok, user} ->
+        conn
+        |> put_flash(:info, "Users manager set successfully.")
         |> redirect(to: Routes.user_path(conn, :show, user))
 
       {:error, %Ecto.Changeset{} = changeset} ->

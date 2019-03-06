@@ -40,6 +40,10 @@ defmodule TaskTracker.Users do
   def get_user_by_email(email) do
     Repo.get_by(User, email: email)
   end
+  def list_admin_users do
+    Repo.get_by(User, admin: true)
+    end
+
 
   @doc """
   Creates a user.
@@ -74,6 +78,12 @@ defmodule TaskTracker.Users do
   def update_user(%User{} = user, attrs) do
     user
     |> User.changeset(attrs)
+    |> Repo.update()
+  end
+
+  def assign_manager(%User{} = user, attrs) do
+    user
+    |> User.changeset(attrs, :set)
     |> Repo.update()
   end
 
