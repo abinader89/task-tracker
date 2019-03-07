@@ -25,19 +25,25 @@
       <li>
       <a href="tasks">Assign Task</a>
       </li>
+      <% end %>
   </article>
 </section>
 <section class="row">
   <article class="column">
     <h2>Profile</h2>
+      <%= if @current_user do %>
       <div>
       <h5>Manager:</h5>
-      <%= render "managers.html" %>
+      <%= render "managers.html", Map.put(assigns, :user, @current_user) %>
+      <% end %>
       <%= if @current_user.admin do %>
-      <h5>Direct Reports</h5>
-      <%= render "underlings.html" %>
+      <h5>Direct Reports:</h5>
+      <%= if TaskTracker.Users.list_users_by_supervisor(@current_user) == [] do %>
+      <p>Currently no reports for this manager</p>
+      <% else %>
+      <%= render "underlings.html", Map.put(assigns, :reports, TaskTracker.Users.list_users_by_supervisor(@current_user)) %>
+      <% end %>
       <% end %>
       </div>
-      <% end %>
       <% end %>
     </ul>

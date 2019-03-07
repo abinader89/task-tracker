@@ -1,3 +1,7 @@
 <p>
-manager(s)
+  <%= if @user.supervisor_id do %>
+  <%= TaskTracker.Users.get_user(@user.supervisor_id).email %>
+  <% else %>
+  Currently no manager for this user
+  <% end %>
 </p>

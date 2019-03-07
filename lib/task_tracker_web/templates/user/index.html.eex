@@ -10,18 +10,18 @@
     </tr>
   </thead>
   <tbody>
-<%= for user <- @users do %>
-<%= if user.id != @current_user.id do %>
+    <%= for user <- @users do %>
+      <%= if user.id != @current_user.id do %>
     <tr>
       <td><%= user.name %></td>
       <td><%= user.email %></td>
-<%= if user.supervisor_id == nil and user.id do %>
+        <%= if user.supervisor_id == nil and user.id do %>
       <td>
         <%= button "Claim", to: "users/" <> Integer.to_string(user.id) %> 
       </td>
-      <% end %>
+        <% end %>
       <% end %>
     </tr>
-<% end %>
+    <% end %>
   </tbody>
 </table>

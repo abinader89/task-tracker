@@ -21,7 +21,7 @@ defmodule TaskTracker.Users do
     Repo.all(User)
   end
   def list_users_by_supervisor(user) do
-    query = from u in "users", where: u.supervisor_id == ^user.id, select: u
+    query = from u in User, where: u.supervisor_id == ^user.id, select: u
     Repo.all(query)
   end
   @doc """
