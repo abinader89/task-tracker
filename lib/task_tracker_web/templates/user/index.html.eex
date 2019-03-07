@@ -17,7 +17,7 @@
       <td><%= user.email %></td>
         <%= if user.supervisor_id == nil and user.id do %>
       <td>
-        <%= button "Claim", to: "users/" <> Integer.to_string(user.id) %> 
+        <%= button "Manage", to: Routes.user_path(@conn, :patch, @current_user) %> 
       </td>
         <% end %>
       <% end %>
@@ -25,3 +25,4 @@
     <% end %>
   </tbody>
 </table>
+<span><%= link "Back", to: Routes.page_path(@conn, :index) %></span>

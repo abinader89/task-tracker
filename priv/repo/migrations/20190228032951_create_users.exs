@@ -6,7 +6,7 @@ defmodule TaskTracker.Repo.Migrations.CreateUsers do
       add :name, :string
       add :email, :string
       add :admin, :boolean
-      add :supervisor_id, references(:users, on_delete: :nothing)
+      add :supervisor_id, references(:users, on_delete: :delete_all)
 
       timestamps()
     end
