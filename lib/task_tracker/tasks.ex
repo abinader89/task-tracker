@@ -20,6 +20,10 @@ defmodule TaskTracker.Tasks do
   def list_tasks do
     Repo.all(Task)
   end
+  def get_tasks_by_user(id) do
+    query = from t in Task, where: t.user_id == ^id, select: t
+    Repo.all(query)
+  end
 
   @doc """
   Gets a single task.
@@ -37,9 +41,6 @@ defmodule TaskTracker.Tasks do
   """
   def get_task!(id), do: Repo.get!(Task, id)
   def get_task(id), do: Repo.get(Task, id)
-  def get_tasks_by_user(id) do
-    Repo.get_by(Task, user_id: id)
-  end
 
   @doc """
   Creates a task.

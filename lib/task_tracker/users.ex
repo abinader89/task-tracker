@@ -115,4 +115,11 @@ defmodule TaskTracker.Users do
   def change_user(%User{} = user) do
     User.changeset(user, %{})
   end
+
+  @doc """
+  Checks if an admin has minions.
+  """
+  def has_minions(user) do
+    length(list_users_by_supervisor(user)) != 0
+  end
 end

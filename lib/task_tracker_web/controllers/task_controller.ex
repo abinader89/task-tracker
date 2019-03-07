@@ -9,6 +9,11 @@ defmodule TaskTrackerWeb.TaskController do
     render(conn, "index.html", tasks: tasks)
   end
 
+  def my_tasks(conn, params) do
+    tasks = Tasks.get_tasks_by_user(conn.assigns.current_user.id)
+    render(conn, "user_tasks.html", tasks: tasks)
+  end
+
   def new(conn, _params) do
     changeset = Tasks.change_task(%Task{})
     render(conn, "new.html", changeset: changeset)

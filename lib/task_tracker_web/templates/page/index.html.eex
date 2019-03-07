@@ -13,10 +13,10 @@
       <% end %>
       <%= if @current_user do %>
       <li>
-        <a href="tasks">View My Tasks</a>
+        <span><%= link "View My Tasks", to: Routes.task_path(@conn, :my_tasks), method: :put %></span>
       </li>
       <li>
-        <span><%= link "Delete Account", to: Routes.user_path(@conn, :delete, @current_user.id), method: :delete, data: [confirm: "Are you sure?"] %> </span>
+        <span><%= link "Delete Account", to: Routes.user_path(@conn, :delete, @current_user.id), method: :delete, data: [confirm: "Are you sure?"] %></span>
       </li>
       </ul>
       </div>

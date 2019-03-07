@@ -1,11 +1,9 @@
 <h1>Unassigned Tasks</h1>
-  <table>
+  <table class="table">
     <thead>
       <tr>
-        <th>Title</th>
-        <th>Desc</th>
-        <th>Finished?</th>
-        <th>Assign</th>
+        <th scope="col">Title</th>
+        <th scope="col">Desc</th>
       </tr>
     </thead>
     <tbody>
@@ -14,10 +12,14 @@
         <tr>
           <td><%= task.title %></td>
           <td><%= task.desc %></td>
-          <td><%= task.done %></td>
+          <%= if TaskTracker.Users.has_minions(@current_user) do %>
           <td><%= link "Assign to my Report", to: Routes.task_path(@conn, :edit, task) %>
+          <% else %>
+          <td><p>(No reports)</p><td>
+          <% end %>
         </tr>
       <% end %>
       <% end %>
       </tbody>
   </table>
+          <span><%= link "Back", to: Routes.page_path(@conn, :index) %></span>
