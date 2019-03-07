@@ -1,19 +1,21 @@
-<h1>My Task(s)</h1>
+<h1>Unassigned Tasks</h1>
   <table>
     <thead>
       <tr>
         <th>Title</th>
         <th>Desc</th>
         <th>Finished?</th>
+        <th>Assign</th>
       </tr>
     </thead>
     <tbody>
       <%= for task <- @tasks do %>
-      <%= if task.user_id == @current_user.id do %>
+      <%= if task.user_id == nil do %>
         <tr>
           <td><%= task.title %></td>
           <td><%= task.desc %></td>
           <td><%= task.done %></td>
+          <td><%= link "Assign to my Report", to: Routes.task_path(@conn, :edit, task) %>
         </tr>
       <% end %>
       <% end %>

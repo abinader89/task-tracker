@@ -5,7 +5,7 @@
     </div>
   <% end %>
   <%= label f, :user_id, "email" %>
-  <%= select f, :user_id, Enum.map(TaskTracker.Users.list_users, &{&1.email, &1.id}) %>
+  <%= select f, :user_id, Enum.map(TaskTracker.Users.list_users_by_supervisor(@current_user), &{&1.email, &1.id}) %>
   <%= error_tag f, :user_id %>
   <div>
   <%= submit "Save" %>

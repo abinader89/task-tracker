@@ -16,8 +16,9 @@
       <a href="tasks">View My Tasks</a>
       </li>
       <%= if @current_user.admin do %>
+      <h5>Manager Section</h5>
       <li>
-        <a href="users">Claim More Underlings</a>
+        <a href="users">Manage Users</a>
       <li>
         <a href="tasks/new">Create Task</a>
       </li>
@@ -26,15 +27,16 @@
       </li>
   </article>
 </section>
-
 <section class="row">
   <article class="column">
     <h2>Profile</h2>
       <div>
-      <h5>My Manager</h5>
+      <h5>Manager:</h5>
       <%= render "managers.html" %>
-      <h5>My Underling(s)</h5>
+      <%= if @current_user.admin do %>
+      <h5>Direct Reports</h5>
       <%= render "underlings.html" %>
+      <% end %>
       </div>
       <% end %>
       <% end %>

@@ -20,7 +20,10 @@ defmodule TaskTracker.Users do
   def list_users do
     Repo.all(User)
   end
-
+  def list_users_by_supervisor(user) do
+    query = from u in "users", where: u.supervisor_id == ^user.id, select: u
+    Repo.all(query)
+  end
   @doc """
   Gets a single user.
 
@@ -40,9 +43,6 @@ defmodule TaskTracker.Users do
   def get_user_by_email(email) do
     Repo.get_by(User, email: email)
   end
-  def list_admin_users do
-    Repo.get_by(User, admin: true)
-    end
 
 
   @doc """
