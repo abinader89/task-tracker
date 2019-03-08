@@ -7,7 +7,7 @@
   <% else %>
     <h1>Finish Task</h1>
 
-    <%= render "finish.html", Map.put(assigns, :action, Routes.task_path(@conn, :patch, @task)) %>
+    <%= render "finish.html", Map.put(assigns, :action, Routes.task_path(@conn, :edit, @task)) %>
   
   <% end %>
 

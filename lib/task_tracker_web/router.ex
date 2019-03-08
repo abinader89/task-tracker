@@ -14,16 +14,28 @@ defmodule TaskTrackerWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :ajax do
+    plug :accepts, ["json"]
+    plug :fetch_session
+    plug :fetch_flash
+    plug TaskTrackerWeb.Plugs.FetchSession
+  end
+
   scope "/", TaskTrackerWeb do
     pipe_through :browser
 
     get "/", PageController, :index
+    post "/tasks/:id/edit", TaskController, :edit
     put "/tasks/:id/edit", TaskController, :patch
     post "/users/:id", UserController, :patch
     put "/tasks", TaskController, :my_tasks
     resources "/users", UserController
     resources "/tasks", TaskController
     resources "/sessions", SessionController, only: [:create, :delete], singleton: true
+  end
+
+  scope "/ajax", TaskTrackerWeb do
+    pipe_through :ajax
     resources "/timeblocks", TimeBlockController, except: [:new, :edit]
   end
 

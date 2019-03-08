@@ -39,7 +39,13 @@ defmodule TaskTracker.Tasks do
       ** (Ecto.NoResultsError)
 
   """
-  def get_task!(id), do: Repo.get!(Task, id)
+#  def get_task!(id), do: Repo.get!(Task, id)
+  def get_task!(id) do
+    Repo.one! from t in Task,
+    where: t.id == ^id,
+    preload: [:timeblocks]
+  end
+
   def get_task(id), do: Repo.get(Task, id)
 
   @doc """

@@ -4,9 +4,9 @@
     <p>Oops, something went wrong! Please check the errors below.</p>
   </div>
   <% end %>
-  <%= label f, :time_spent %>
-  <%= number_input f, :time_spent, class: "form-control", step: "15", min: "0" %>
-  <%= error_tag f, :time_spent %>
+  <%= label f, :done %>
+  <%= checkbox f, :done %>
+  <%= error_tag f, :done %>
   <div>
     <%= submit "Save" %>
   </div>
