@@ -16,8 +16,8 @@
           <%= if !task.done do %>
             <%= button "Finish", to: Routes.task_path(@conn, :edit, task) %>
               <div id="timeblock-form">
-                Start: <input type="datetime-local" id="timeblock-start" placeholder="YYYY-MM-DD HH:MM">
-                End: <input type="datetime-local" id="timeblock-end" placeholder="YYYY-MM-DD HH:MM">
+                Start: <input type="datetime-local" id="timeblock-start" placeholder="YYYY/MM/DD HH:MM">
+                End: <input type="datetime-local" id="timeblock-end" placeholder="YYYY/MM/DD HH:MM">
               <button id="timeblock-button"
                       data-task-id="<%= task.id %>"
                       class="btn btn-secondary">Submit TimeBlock</button>

@@ -1,0 +1,48 @@
+<h1>Show Task</h1>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @task.title %>
+  </li>
+
+  <li>
+    <strong>Desc:</strong>
+    <%= @task.desc %>
+  </li>
+
+  <li>
+    <strong>TimeBlocks:</strong
+    <%= for timeblock <- @task.timeblocks do %>
+    <div class="container">
+      <div class="row justify-content-left">
+        <div class="col-0">
+          <p>{ <%= timeblock.start %> ,<p>
+        </div>
+        <div class="col-0">
+         <p>&nbsp;<%= timeblock.end %> }</p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= if @task.done do %>
+      <font color="green">&#x2611;</font>
+    <% else %>
+      <font color="red">&empty;</font>
+    <% end %>
+  </li>
+
+  <%= if @task.done do %>
+    <li>
+      <strong>Time Spent:</strong>
+      <p>0</p>
+    </li>
+  <% end %>
+</ul>
+<span><%= link "Back", to: Routes.page_path(@conn, :index) %></span>
+

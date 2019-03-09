@@ -6,7 +6,6 @@ defmodule TaskTracker.Tasks.Task do
   schema "tasks" do
     field :desc, :string
     field :done, :boolean, default: false
-    field :time_spent, :integer
     field :title, :string
     belongs_to :user, TaskTracker.Users.User
     has_many :timeblocks, TaskTracker.TimeBlocks.TimeBlock

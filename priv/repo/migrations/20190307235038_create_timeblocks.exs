@@ -5,6 +5,7 @@ defmodule TaskTracker.Repo.Migrations.CreateTimeblocks do
     create table(:timeblocks) do
       add :start, :string
       add :end, :string
+      add :delta, :integer
       add :task_id, references(:tasks, on_delete: :nothing)
 
       timestamps()

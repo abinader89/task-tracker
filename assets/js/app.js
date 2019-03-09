@@ -11,6 +11,13 @@ $(function () {
         let timeblock_end = $('#timeblock-end').val();
         let task_id = $(ev.target).data('task-id');
 
+        if (timeblock_start.size != 16
+        || timeblock_end.size != 16)
+        {
+            window.alert("Unexpected format, check your input and try again.");
+            return;
+        }
+
         let text = JSON.stringify({
             time_block: {
                 end: timeblock_end,

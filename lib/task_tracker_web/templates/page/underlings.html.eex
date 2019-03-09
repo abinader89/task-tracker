@@ -5,23 +5,24 @@
         <th scope="col">Name</th>
         <th scope="col">Email</th>
         <th scope="col">Tasks</th>
-      <tr>
+      </tr>
     </thead>
     <tbody>
-    <tr>
-      <td><%= user.name %></td>
-      <td><%= user.email %></td>
-      <td>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td>
         <%= for task <- TaskTracker.Tasks.get_tasks_by_user(user.id) do %>
           <%= if task.done do %>
-          <font color="green">
+            <div class="p-3 mb-2 bg-success text-white">
           <% else %>
-          <font color="red">
+            <div class="p-3 mb-2 bg-danger text-white">
           <% end %>
-          <strong><%= task.title %></strong></font>
+           <strong><%= link task.title, to: Routes.task_path(@conn, :show, task) %></strong>
+            </div>
         <% end %>
-      </td>
-    </tr>
+        </td>
+      </tr>
     </tbody>
     </table>
 <% end %>
