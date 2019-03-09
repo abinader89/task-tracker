@@ -39,7 +39,6 @@ defmodule TaskTracker.Tasks do
       ** (Ecto.NoResultsError)
 
   """
-#  def get_task!(id), do: Repo.get!(Task, id)
   def get_task!(id) do
     Repo.one! from t in Task,
     where: t.id == ^id,
@@ -104,6 +103,14 @@ defmodule TaskTracker.Tasks do
   """
   def delete_task(%Task{} = task) do
     Repo.delete(task)
+  end
+  
+  @doc """
+  Returns the sum of all time spent on a task
+  """
+  def sum_delta(task) do
+    query = from t in TaskTracker.TimeBlocks.TimeBlock, where: t.task_id == ^task.id, select: t
+    Repo.aggregate(query, :sum, :delta)
   end
 
   @doc """

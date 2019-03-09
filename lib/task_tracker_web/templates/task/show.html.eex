@@ -40,7 +40,13 @@
   <%= if @task.done do %>
     <li>
       <strong>Time Spent:</strong>
-      <p>0</p>
+      <p>
+        <%= if length(@task.timeblocks) == 0 do %>
+          &empty;
+        <% else %>
+        <%= TaskTracker.Tasks.sum_delta(@task) %>
+        <% end %>
+      </p>
     </li>
   <% end %>
 </ul>
