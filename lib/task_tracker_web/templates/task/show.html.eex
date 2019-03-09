@@ -13,17 +13,21 @@
   </li>
 
   <li>
-    <strong>TimeBlocks:</strong
-    <%= for timeblock <- @task.timeblocks do %>
+    <strong>TimeBlocks:</strong>
+    <%= if length(@task.timeblocks) == 0 do %>
+      <p>&empty;</p>
+    <% else %>
     <div class="container">
+    <%= for timeblock <- @task.timeblocks do %>
       <div class="row justify-content-left">
         <div class="col-0">
-          <p>{ <%= timeblock.start %> ,<p>
+          <p>{ <%= timeblock.start %>,<p>
         </div>
         <div class="col-0">
          <p>&nbsp;<%= timeblock.end %> }</p>
         </div>
       </div>
+    <% end %>
     </div>
     <% end %>
   </li>

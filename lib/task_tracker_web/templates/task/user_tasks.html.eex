@@ -2,9 +2,12 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">Title</th>
-        <th scope="col">Desc</th>
-        <th scope="col">Status</th>
+        <td class="w-5"><strong>Title</strong></td>
+        <td class="w-20"><strong>Desc</strong></td>
+        <td class="w-5"><strong>Status</strong></td>
+        <td scope="w-25"><strong>Create Timeblock</strong></td>
+        <td scope="w-20"><strong>Edit Timeblock</strong></td>
+        <td scope="w-20"><strong>Delete TimeBlock</strong></td>
       </tr>
     </thead>
     <tbody>
@@ -13,21 +16,82 @@
           <td><%= task.title %></td>
           <td><%= task.desc %></td>
           <td>
-          <%= if !task.done do %>
+          <%= if task.done do %>
+            <font color="green">&#x2714;</font>
+          <% else %>
+          <div class="row">
             <%= button "Finish", to: Routes.task_path(@conn, :edit, task) %>
+          </div>
+          <div class="row">
+            <button id="start-working"
+                    data-task-id="<%= task.id %>"
+                    class="btn btn-success">Start Working</button>
+          </div>
+          <% end %>
+          </td>
+          <td>
               <div id="timeblock-form">
-                Start: <input type="datetime-local" id="timeblock-start" placeholder="YYYY/MM/DD HH:MM">
-                End: <input type="datetime-local" id="timeblock-end" placeholder="YYYY/MM/DD HH:MM">
+              <div class="row">
+                Start: <input type="time" id="start-timeblock-time">
+                <input type="date" id="start-timeblock-date">
+              </div>
+              <div class="row">
+                End : <input type="time" id="end-timeblock-time">
+                <input type="date" id="end-timeblock-date">
+              </div>
               <button id="timeblock-button"
                       data-task-id="<%= task.id %>"
                       class="btn btn-secondary">Submit TimeBlock</button>
               </div>
+        </td>
+        <td>
+        <%= if length(TaskTracker.TimeBlocks.list_timeblocks_by_task(task.id)) > 0 do %>
+        <div id="timeblock-edit-form">
+          <div class="row">
+          <select id="edit-timeblock">
+            <%= for timeblock <- TaskTracker.TimeBlocks.list_timeblocks_by_task(task.id) do %>
+            <option value="<%= timeblock.id %>"><%= timeblock.start %>, <%= timeblock.end %></option>
+            <% end %>
+          </select>
+          </div>
+        <div class="row">
+          Start: <input type="time" id="start-timeblock-time">
+          <input type="date" id="start-timeblock-date">
+        </div>
+        <div class="row">
+          End : <input type="time" id="end-timeblock-time">
+          <input type="date" id="end-timeblock-date">
+        </div>
+        <div class="row">
+          <button id="timeblock-button-edit"
+                  data-task-id="<%= task.id %>"
+                  class="btn btn-warning">Edit TimeBlock</button>
+            </div>
+         </div>
           <% else %>
-              <font color="green">&#x2714;</font>
+            <p>(No Timeblocks)</p>
           <% end %>
-          </td>
-        </tr>
+        </td>
+        <td>
+        <%= if length(TaskTracker.TimeBlocks.list_timeblocks_by_task(task.id)) > 0 do %>
+        <div id="timeblock-delete-form">
+        <div class="row">
+          <select id="delete-timeblock">
+            <%= for timeblock <- TaskTracker.TimeBlocks.list_timeblocks_by_task(task.id) do %>
+            <option value="<%= timeblock.id %>"><%= timeblock.start %>, <%= timeblock.end %></option>
+            <% end %>
+          </select>
+        </div>
+        <div class="row">
+          <button id="timeblock-button-delete"
+                  data-task-id="<%= task.id %>"
+                  class="btn btn-danger">Delete TimeBlock</button>
+            </div>
+         </div>
+           <% end %>
+        </td>
         <% end %>
+        </tr>
         </tbody>
         </table>
 <span><%= link "Back", to: Routes.page_path(@conn, :index) %></span>
