@@ -5,7 +5,7 @@ window.jQuery = window.$ = jQuery;
 import "bootstrap";
 
 var date = require('moment');
-var tb_path = "ajax/timeblocks";
+var tb_path = "ajax/timeblocks/";
 var moment = require('moment');
 
 // create a timeblock
@@ -52,10 +52,33 @@ $(function () {
             contentType: "application/json; charset=UTF-8",
             data: text,
             success: (resp) => {
-                $('#timeblock-button').text(`Timeblock Assigned`);
+            $('#timeblock-button').text(`Timeblock Assigned`);
+                window.location.reload();
             },
         });
     });
 });
 
 // delete a timeblock
+$(function () {
+    $('#timeblock-button-delete').click((ev) => {
+        let timeblock_id = $('#delete-timeblock').val();
+        
+        var delete_confirm = 'Do you really want to delete this timeblock?';
+
+        if (!delete_confirm)
+        {
+            return;
+        }
+        tb_path += timeblock_id;
+        $.ajax(tb_path, {
+            method: "delete",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            success: (resp) => {
+                $('#timeblock-button-delete').text(`Timeblock Deleted`);
+                window.location.reload();
+            },
+        });
+    });
+});

@@ -30,6 +30,7 @@
           <% end %>
           </td>
           <td>
+          <%= if !task.done do %>
               <div id="timeblock-form">
               <div class="row">
                 Start: <input type="time" id="start-timeblock-time">
@@ -43,8 +44,12 @@
                       data-task-id="<%= task.id %>"
                       class="btn btn-secondary">Submit TimeBlock</button>
               </div>
+            <% else %>
+              <p>(Already Finished)</p>
+            <% end %>
         </td>
         <td>
+        <%= if !task.done do %>
         <%= if length(TaskTracker.TimeBlocks.list_timeblocks_by_task(task.id)) > 0 do %>
         <div id="timeblock-edit-form">
           <div class="row">
@@ -71,8 +76,12 @@
           <% else %>
             <p>(No Timeblocks)</p>
           <% end %>
+          <% else %>
+            <p>(Already Finished)</p>
+          <% end %>
         </td>
         <td>
+        <%= if !task.done do %>
         <%= if length(TaskTracker.TimeBlocks.list_timeblocks_by_task(task.id)) > 0 do %>
         <div id="timeblock-delete-form">
         <div class="row">
@@ -84,10 +93,12 @@
         </div>
         <div class="row">
           <button id="timeblock-button-delete"
-                  data-task-id="<%= task.id %>"
                   class="btn btn-danger">Delete TimeBlock</button>
             </div>
          </div>
+           <% end %>
+           <% else %>
+             <p>(Already Finished)</p>
            <% end %>
         </td>
         <% end %>
