@@ -14,7 +14,7 @@
   <%= error_tag f, :email %>
 
   <%= label f, :admin,  "Role" %>
-  <%= select f, :admin, ["Admin": true, "User": false] %>
+  <%= select f, :admin, ["Manager": true, "User": false] %>
 
   <div>
     <%= submit "Save" %>

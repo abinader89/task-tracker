@@ -12,7 +12,7 @@ use Mix.Config
 config :task_tracker, TaskTrackerWeb.Endpoint,
   server: true,
   root: ".",
-  http: [port: System.get_env("PORT")],
+  http: [port: {:system, "PORT"}],
   url: [host: "tasks2.cs4550abinader.com", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
 

@@ -6,6 +6,7 @@ import "bootstrap";
 
 var tb_path = "ajax/timeblocks/";
 var moment = require('moment');
+var started_working = false;
 
 // create a timeblock
 $(function () {
@@ -23,9 +24,10 @@ $(function () {
         var delta = end - start;
         delta /= 60000 
 
-        if (delta < 0)
+        if (started_working
+		|| delta < 0)
         {
-            window.alert("Unexpected format, try again.");
+            window.alert("Something went wrong...");
             return;
         }
 
@@ -133,7 +135,6 @@ $(function () {
     });
 });
 
-var started_working = false;
 var working_start;
 var working_end;
 
@@ -165,9 +166,10 @@ $(function () {
                 data: text,
                 success: (resp) => {
                     $('#start-working').text(`Start Working`);
+                    $('#start-working').css('background-color', 'green');
                     console.log('stopped working at: ' + working_end);
-                    setTimeout(function(){ location.reload(); }, 2000);
-                    started_working = false;
+                    started_working = false; 
+	            location.reload();
             },
         });
         } else {
