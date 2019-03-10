@@ -8,6 +8,10 @@ var date = require('moment');
 var tb_path = "ajax/timeblocks/";
 var moment = require('moment');
 
+var create_buttons = document.getElementsByClassName("timeblock-form-create");
+var delete_buttons = document.getElementsByClassName("timeblock-form-delete");
+var edit_buttons = document.getElementsByClassName("timeblock-form-edit");
+
 // create a timeblock
 $(function () {
     $('#timeblock-button').click((ev) => {
@@ -19,12 +23,10 @@ $(function () {
 
         let timeblock_start = timeblockdate_start + " " + timeblocktime_start;
         let timeblock_end = timeblockdate_end + " " + timeblocktime_end;
-
         var start = moment(timeblock_start, 'YYYY-MM-DD HH:mm');
         var end = moment(timeblock_end, 'YYYY-MM-DD HH:mm');
         var delta = end - start;
         delta /= 60000 
-        console.log(delta);
 
         if (delta < 0)
         {
