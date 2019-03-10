@@ -51,7 +51,7 @@ $(function () {
             success: (resp) => {
             $('#create-timeblock').text(`Timeblock Assigned`);
                 console.log("success!");
-                setTimeout(function(){ location.reload(); }, 5000);
+                setTimeout(function(){ location.reload(); }, 2000);
             },
         });
     });
@@ -76,13 +76,13 @@ $(function () {
             success: (resp) => {
                 $('#delete-timeblock').text(`Timeblock Deleted`);
                     console.log("success!");
-                    setTimeout(function(){ location.reload(); }, 5000);
+                    setTimeout(function(){ location.reload(); }, 2000);
             },
         });
     });
 });
 
-// update a timeblock if incorrect
+// update a timeblock
 $(function () {
     $('#edit-timeblock').click((ev) => {
         let timeblocktime_start = $('#edit-start-timeblock-time').val();
@@ -127,9 +127,57 @@ $(function () {
             success: (resp) => {
             $('#create-timeblock').text(`Timeblock Assigned`);
                 console.log("success!");
-                setTimeout(function(){ location.reload(); }, 5000);
+                setTimeout(function(){ location.reload(); }, 2000);
             },
         });
     });
 });
 
+var started_working = false;
+var working_start;
+var working_end;
+
+// start and stop working
+$(function () {
+    $('#start-working').click((ev) => {
+        if (started_working)
+        {
+            let task_id = $(ev.target).data('task-id');
+            working_end = moment().format('YYYY-MM-DD HH:mm');
+            let start = moment(working_start, 'YYYY-MM-DD HH:mm');
+            let end = moment(working_end, 'YYYY-MM-DD HH:mm');
+            var delta = end - start;
+            delta /= 60000 
+
+            let text = JSON.stringify({
+                time_block: {
+                    end: working_end,
+                    start: working_start,
+                    delta: delta,
+                    task_id: task_id,
+                },
+            });
+
+            $.ajax(tb_path, {
+                method: "post",
+                dataType: "json",
+                contentType: "application/json; charset=UTF-8",
+                data: text,
+                success: (resp) => {
+                    $('#start-working').text(`Start Working`);
+                    console.log('stopped working at: ' + working_end);
+                    setTimeout(function(){ location.reload(); }, 2000);
+                    started_working = false;
+            },
+        });
+        } else {
+            working_start = moment().format('YYYY-MM-DD HH:mm');
+            $('#start-working').text(`Stop Working`);
+            $('#start-working').css('background-color', 'red');
+            console.log('started working at: ' + working_start);
+            started_working = true;
+
+            return;
+        }
+    });
+});

@@ -73,7 +73,7 @@
     </div>
     <div class="row">
       <button id="start-working"
-              data-task-id="<% @task.id %>"
+              data-task-id="<%= @task.id %>"
               class="btn btn-success">Start Working</button>
     </div>
   </div>
