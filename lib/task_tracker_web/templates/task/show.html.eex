@@ -54,5 +54,62 @@
     </li>
   <% end %>
 </ul>
+<%= if !@task.done and @task.user_id == @current_user.id do %>
+  <div class="timeblock-form-create justify-content-end">
+  <div class="row">
+    <input type="time" id="start-timeblock-time">
+    <input type="date" id="start-timeblock-date"> <strong> Start Time</strong>
+  </div>
+  <div class="row">
+    <input type="time" id="end-timeblock-time"> 
+    <input type="date" id="end-timeblock-date"> <strong> End Time</strong>
+  </div>
+  <div class="row">
+  <button id="create-timeblock"
+  data-task-id="<%= @task.id %>"
+  class="btn btn-success">Submit TimeBlock</button>
+  </div>
+  </div>
+  <% end %>
+<%= if @task.user_id != @current_user.id do %>
+  <%= if !@task.done do %>
+    <%= if length(TaskTracker.TimeBlocks.list_timeblocks_by_task(@task.id)) > 0 do %>
+      <div id="timeblock-edit-form">
+        <div class="row">
+          <select id="edit-timeblock-select">
+            <%= for timeblock <- TaskTracker.TimeBlocks.list_timeblocks_by_task(@task.id) do %>
+              <option value="<%= timeblock.id %>"><%= timeblock.start %>, <%= timeblock.end %></option>
+    <% end %>
+          </select>
+        </div>
+        <div class="row">
+        <input type="time" id="edit-start-timeblock-time">
+        <input type="date" id="edit-start-timeblock-date"> <strong>Start Time</strong> 
+        </div>
+        <div class="row">
+        <input type="time" id="edit-end-timeblock-time">
+        <input type="date" id="edit-end-timeblock-date"> <strong>End Time</strong>  
+        </div>
+        <div class="row">
+        <button id="edit-timeblock"
+                class="btn btn-warning">Edit TimeBlock</button>
+        </div>
+        </div>
+      <div id="timeblock-delete-form">
+      <div class="row">
+          <select id="delete-timeblock">
+            <%= for timeblock <- TaskTracker.TimeBlocks.list_timeblocks_by_task(@task.id) do %>
+              <option value="<%= timeblock.id %>"><%= timeblock.start %>, <%= timeblock.end %></option>
+            <% end %>
+          </select>
+      </div>
+      <div class="row">
+        <button id="delete-timeblock"
+                class="btn btn-danger">Delete TimeBlock</button>
+      </div>
+      </div>
+      <% end %>
+    <% end %>
+  <% end %>
 <span><%= link "Back", to: Routes.page_path(@conn, :index) %></span>
 
