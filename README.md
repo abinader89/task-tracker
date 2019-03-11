@@ -59,6 +59,14 @@ with a user.
 A timeblock has a start time, end time, delta between the two, and a task_id
 associated with a task. The timestamp format is YYYY-MM-DD HH:mm.
 
+#### Note on TimeBlocks
+I have decided to allow timeblocks to be created that overlap with existing 
+timeblocks. This is a feature, and not a bug. The reason why I am not implementing
+constraints on overlapping timeblocks is so that if a user is reporting the total 
+man-minutes spent on a task, and is receiving help from somebody to complete said 
+task, he would necessarily create overlapping timeblocks to accurately depict the 
+amount of time.
+
 ## Recommended flow
 
 You can start by creating a user that is a manager. Then create a user for the
